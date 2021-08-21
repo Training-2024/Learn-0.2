@@ -32,7 +32,12 @@ def readMarkSheet(file_name):
 
 	##############	ADD YOUR CODE HERE	##############
 	
-	
+	csv_reader = csv.reader(input_file_obj)
+	line_count = 0
+	for row in csv_reader:
+		if line_count > 0:
+			name_marks_mapping[row[0]]={'marks':[row[1],row[2],row[3],row[4],row[5]]}
+		line_count += 1	
 
 	##################################################
 	
@@ -82,7 +87,13 @@ def generateGradeCard(mapping_dict):
 
 	##############	ADD YOUR CODE HERE	##############
 	
-	
+	grades = ['Fail','Fail','Fail','Fail','D','C','B','A','A+','O']
+	for n in mapping_dict.keys():
+		sum = 0
+		for i in mapping_dict[n]['marks']:
+			sum += int(i)
+		avg = int(sum/50)
+		grade_card[n] = {'subject_wise_marks':mapping_dict.get(n),'grade recieved':grades[avg]}
 
 	##################################################
 
